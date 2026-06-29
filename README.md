@@ -179,6 +179,9 @@ public MM-Mix TMDB
 For a model-specific integration, keep the same boundary: processor output
 must be a single-sample tensor dictionary before ODB grouping.
 
+For the package API contract behind this example, see the
+[Accelerate integration guide](https://github.com/online-dynamic-batching/online-dynamic-batching/blob/main/docs/integration-guides/accelerate.md).
+
 The default image cap is chosen for stable out-of-the-box execution. Tune
 `ODB_MM_MIX_IMAGE_MAX_PIXELS` when you want to allow larger images.
 
