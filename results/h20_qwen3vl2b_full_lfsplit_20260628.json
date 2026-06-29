@@ -1,0 +1,45 @@
+{
+  "description": "Example run record for the Accelerate example. This is not a paper-number reproduction result.",
+  "date": "2026-06-28",
+  "package": {
+    "online_dynamic_batching": "0.1.2"
+  },
+  "hardware": "1 node x 8 H20",
+  "model": "Qwen3-VL-2B-Instruct",
+  "split": {
+    "mode": "lf_val_size",
+    "val_size": 0.05,
+    "seed": 42
+  },
+  "rows": [
+    {
+      "loader": "standard",
+      "runtime_hours": 1.50,
+      "emitted_samples_per_second": 36.38,
+      "train_loss": 1.0713,
+      "val_loss": 1.0150,
+      "mmmu_mc": 42.71
+    },
+    {
+      "loader": "odb",
+      "runtime_hours": 0.59,
+      "emitted_samples_per_second": 92.23,
+      "train_loss": 1.2358,
+      "val_loss": 1.0744,
+      "mmmu_mc": 45.76,
+      "token_budget": 12288,
+      "buffer_size": 1024,
+      "loss_scaling": "exact",
+      "join": true
+    }
+  ],
+  "derived": {
+    "throughput_speedup": 2.54,
+    "validation_loss_delta_odb_minus_standard": 0.0594,
+    "mmmu_mc_delta_points": 3.05
+  },
+  "notes": [
+    "MMMU-MC was evaluated from local Hugging Face cache in offline mode to avoid network-dependent benchmark failures.",
+    "This record validates the public Accelerate example path and clean training teardown; it is not a paper-number reproduction result."
+  ]
+}
