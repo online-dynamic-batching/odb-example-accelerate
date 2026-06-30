@@ -10,7 +10,7 @@ cd "${ROOT_DIR}"
 DATA="${ODB_MM_MIX_DATA:-data/mm-mix-tmdb}"
 MODEL="${ODB_MM_MIX_MODEL:-Qwen/Qwen3-VL-2B-Instruct}"
 OUTPUT_ROOT="${ODB_MM_MIX_OUTPUT_ROOT:-outputs/accelerate-real}"
-RECIPE_ROOT="${ODB_MM_MIX_RECIPE_ROOT:-.deps/odb-mm-mix-example}"
+RECIPE_ROOT="${ODB_MM_MIX_RECIPE_ROOT:-.deps/build-mm-mix-dataset}"
 EVAL_CHECKPOINT="${ODB_ACCEL_EVAL_CHECKPOINT:-${OUTPUT_ROOT}/odb}"
 EVAL_OUTPUT_ROOT="${ODB_ACCEL_EVAL_OUTPUT_ROOT:-${EVAL_CHECKPOINT}}"
 MAX_STEPS="${ODB_MM_MIX_MAX_STEPS:-0}"
@@ -87,7 +87,7 @@ case "${MODE}" in
   data)
     mkdir -p "$(dirname "${RECIPE_ROOT}")"
     if [[ ! -d "${RECIPE_ROOT}/.git" ]]; then
-      git clone https://github.com/online-dynamic-batching/odb-mm-mix-example.git "${RECIPE_ROOT}"
+      git clone https://github.com/online-dynamic-batching/build-mm-mix-dataset.git "${RECIPE_ROOT}"
     fi
     "${PYTHON_BIN}" -m pip install -e "${RECIPE_ROOT}"
     "${PYTHON_BIN}" "${RECIPE_ROOT}/scripts/build_public_mm_mix.py" \
@@ -151,7 +151,7 @@ Modes:
 
 Useful environment variables:
   ODB_MM_MIX_DATA=data/mm-mix-tmdb
-  ODB_MM_MIX_RECIPE_ROOT=.deps/odb-mm-mix-example
+  ODB_MM_MIX_RECIPE_ROOT=.deps/build-mm-mix-dataset
   ODB_MM_MIX_MODEL=Qwen/Qwen3-VL-2B-Instruct
   ODB_MM_MIX_MAX_STEPS=0         # full pass over the selected training split
   ODB_MM_MIX_TRAIN_SIZE=128      # set to 0 to use the full public training split
